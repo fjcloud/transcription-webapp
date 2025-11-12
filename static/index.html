@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Transcription - Red Hat</title>
+    
+    <!-- PatternFly 5 CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/@patternfly/patternfly@5/patternfly.css">
+    <link rel="stylesheet" href="https://unpkg.com/@patternfly/patternfly@5/patternfly-addons.css">
+    
+    <!-- Red Hat Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="pf-v5-c-page">
+        <!-- Masthead (Header) -->
+        <header class="pf-v5-c-masthead" id="basic-masthead">
+            <div class="pf-v5-c-masthead__main">
+                <div class="pf-v5-c-masthead__brand">
+                    <div class="pf-v5-c-brand">
+                        <span class="brand-title">Audio Transcription</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="pf-v5-c-page__main" tabindex="-1">
+            <section class="pf-v5-c-page__main-section">
+                <div class="pf-v5-l-grid pf-m-gutter">
+                    <!-- Left Column: Audio Input -->
+                    <div class="pf-v5-l-grid__item pf-m-12-col pf-m-6-col-on-lg">
+                        <!-- Recording Card -->
+                        <div class="pf-v5-c-card">
+                            <div class="pf-v5-c-card__title">
+                                <h2 class="pf-v5-c-title pf-m-lg">Record Audio</h2>
+                            </div>
+                            <div class="pf-v5-c-card__body">
+                                <div class="recording-controls">
+                                    <button class="pf-v5-c-button pf-m-primary pf-m-block" id="startRecordBtn" type="button">
+                                        <span class="pf-v5-c-button__icon pf-m-start">
+                                            <i class="fas fa-microphone" aria-hidden="true"></i>
+                                        </span>
+                                        Start Recording
+                                    </button>
+                                    <button class="pf-v5-c-button pf-m-danger pf-m-block" id="stopRecordBtn" type="button" style="display: none;">
+                                        <span class="pf-v5-c-button__icon pf-m-start">
+                                            <i class="fas fa-stop" aria-hidden="true"></i>
+                                        </span>
+                                        Stop Recording
+                                    </button>
+                                    <div id="recordingTimer" class="recording-timer" style="display: none;">
+                                        Recording: <span id="timerDisplay">00:00</span>
+                                    </div>
+                                    <audio id="audioPlayback" controls style="display: none; width: 100%; margin-top: 1rem;"></audio>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upload Card -->
+                        <div class="pf-v5-c-card" style="margin-top: 1rem;">
+                            <div class="pf-v5-c-card__title">
+                                <h2 class="pf-v5-c-title pf-m-lg">Upload Audio File</h2>
+                            </div>
+                            <div class="pf-v5-c-card__body">
+                                <form class="pf-v5-c-form">
+                                    <div class="pf-v5-c-form__group">
+                                        <label class="pf-v5-c-form__label" for="fileInput">
+                                            <span class="pf-v5-c-form__label-text">WAV File</span>
+                                        </label>
+                                        <input class="pf-v5-c-form-control" type="file" id="fileInput" accept=".wav" aria-describedby="file-help">
+                                        <div class="pf-v5-c-form__helper-text" id="file-help">
+                                            <span class="pf-v5-c-form__helper-text-icon">
+                                                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                            </span>
+                                            Select a WAV audio file to transcribe
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Language Selection Card -->
+                        <div class="pf-v5-c-card" style="margin-top: 1rem;">
+                            <div class="pf-v5-c-card__title">
+                                <h2 class="pf-v5-c-title pf-m-lg">Audio Language (optional hint)</h2>
+                            </div>
+                            <div class="pf-v5-c-card__body">
+                                <form class="pf-v5-c-form">
+                                    <div class="pf-v5-c-form__group">
+                                        <label class="pf-v5-c-form__label" for="languageSelect">
+                                            <span class="pf-v5-c-form__label-text">Language</span>
+                                        </label>
+                                        <select class="pf-v5-c-form-control" id="languageSelect" aria-describedby="language-help">
+                                            <option value="auto">Auto-detect</option>
+                                            <option value="en">English</option>
+                                            <option value="fr">French</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="de">German</option>
+                                            <option value="it">Italian</option>
+                                            <option value="pt">Portuguese</option>
+                                            <option value="nl">Dutch</option>
+                                            <option value="pl">Polish</option>
+                                            <option value="ru">Russian</option>
+                                            <option value="zh">Chinese</option>
+                                            <option value="ja">Japanese</option>
+                                            <option value="ko">Korean</option>
+                                            <option value="ar">Arabic</option>
+                                            <option value="hi">Hindi</option>
+                                            <option value="tr">Turkish</option>
+                                        </select>
+                                        <div class="pf-v5-c-form__helper-text" id="language-help">
+                                            <span class="pf-v5-c-form__helper-text-icon">
+                                                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                            </span>
+                                            Optionally specify the audio's spoken language to improve transcription accuracy. The audio will be transcribed in its original language (no translation).
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Transcribe Button -->
+                        <button class="pf-v5-c-button pf-m-primary pf-m-block" id="transcribeBtn" type="button" style="margin-top: 1rem;">
+                            Transcribe Audio
+                        </button>
+                    </div>
+
+                    <!-- Right Column: Results -->
+                    <div class="pf-v5-l-grid__item pf-m-12-col pf-m-6-col-on-lg">
+                        <!-- Error Alert -->
+                        <div class="pf-v5-c-alert pf-m-danger" id="errorAlert" style="display: none; margin-bottom: 1rem;" aria-label="Error alert">
+                            <div class="pf-v5-c-alert__icon">
+                                <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="pf-v5-c-alert__title" id="errorTitle">Error</h4>
+                            <div class="pf-v5-c-alert__description" id="errorMessage"></div>
+                            <div class="pf-v5-c-alert__action">
+                                <button class="pf-v5-c-button pf-m-plain" type="button" aria-label="Close error alert" id="closeErrorBtn">
+                                    <i class="fas fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Loading Spinner -->
+                        <div id="loadingSpinner" style="display: none; text-align: center; margin: 2rem 0;">
+                            <span class="pf-v5-c-spinner pf-m-xl" role="progressbar" aria-label="Loading">
+                                <span class="pf-v5-c-spinner__clipper"></span>
+                                <span class="pf-v5-c-spinner__lead-ball"></span>
+                                <span class="pf-v5-c-spinner__tail-ball"></span>
+                            </span>
+                            <p id="loadingMessage" style="margin-top: 1rem;">Processing...</p>
+                        </div>
+
+                        <!-- Transcription Result Card -->
+                        <div class="pf-v5-c-card" id="transcriptionCard" style="display: none;">
+                            <div class="pf-v5-c-card__title">
+                                <h2 class="pf-v5-c-title pf-m-lg">Transcription</h2>
+                            </div>
+                            <div class="pf-v5-c-card__body">
+                                <div class="pf-v5-c-code-block">
+                                    <div class="pf-v5-c-code-block__content">
+                                        <pre class="pf-v5-c-code-block__pre"><code id="transcriptionText" class="pf-v5-c-code-block__code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pf-v5-c-card__footer">
+                                <button class="pf-v5-c-button pf-m-primary" id="summarizeBtn" type="button">
+                                    Summarize
+                                </button>
+                                <button class="pf-v5-c-button pf-m-secondary" id="copyTranscriptionBtn" type="button">
+                                    Copy
+                                </button>
+                                <button class="pf-v5-c-button pf-m-link" id="newTranscriptionBtn" type="button">
+                                    New Transcription
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Summary Result Card -->
+                        <div class="pf-v5-c-card" id="summaryCard" style="display: none; margin-top: 1rem;">
+                            <div class="pf-v5-c-card__title">
+                                <h2 class="pf-v5-c-title pf-m-lg">Summary</h2>
+                            </div>
+                            <div class="pf-v5-c-card__body">
+                                <div class="pf-v5-c-code-block">
+                                    <div class="pf-v5-c-code-block__content">
+                                        <div id="summaryText" class="summary-content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pf-v5-c-card__footer">
+                                <button class="pf-v5-c-button pf-m-secondary" id="copySummaryBtn" type="button">
+                                    Copy Summary
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Application JavaScript -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
+

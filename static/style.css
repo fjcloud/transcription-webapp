@@ -1,0 +1,292 @@
+/* Red Hat Typography - Brand Standards */
+body {
+    font-family: 'Red Hat Text', 'Overpass', overpass, helvetica, arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6, .pf-v5-c-title {
+    font-family: 'Red Hat Display', 'Overpass', overpass, helvetica, arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.pf-v5-c-button {
+    font-family: 'Red Hat Display', 'Overpass', overpass, helvetica, arial, sans-serif;
+    font-weight: 500;
+}
+
+/* Never justify text */
+p, div {
+    text-align: left;
+    text-justify: none;
+}
+
+/* Use default letter-spacing (do not modify) */
+* {
+    letter-spacing: normal;
+}
+
+/* Red Hat Brand Colors */
+.pf-v5-c-masthead {
+    background-color: #ee0000;
+}
+
+.brand-title {
+    color: white;
+    font-family: 'Red Hat Display', 'Overpass', overpass, helvetica, arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.pf-v5-c-button.pf-m-primary {
+    background-color: #ee0000;
+    border-color: #ee0000;
+}
+
+.pf-v5-c-button.pf-m-primary:hover {
+    background-color: #c00;
+    border-color: #c00;
+}
+
+.pf-v5-c-button.pf-m-link {
+    color: #06c;
+}
+
+.pf-v5-c-button.pf-m-link:hover {
+    color: #004080;
+}
+
+/* Page Layout */
+.pf-v5-c-page {
+    min-height: 100vh;
+}
+
+.pf-v5-c-page__main-section {
+    padding: 2rem;
+}
+
+/* Cards */
+.pf-v5-c-card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pf-v5-c-card__title {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.pf-v5-c-card__body {
+    padding: 1.5rem;
+}
+
+.pf-v5-c-card__footer {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Recording Controls */
+.recording-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.recording-timer {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #ee0000;
+    padding: 0.75rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+/* Code Blocks - Transcription Display */
+.pf-v5-c-code-block__pre {
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    border: 1px solid #d2d2d2;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 0;
+}
+
+.pf-v5-c-code-block__code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Summary Display - Markdown Support */
+.summary-content {
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border: 1px solid #d2d2d2;
+    border-radius: 4px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-family: 'Red Hat Text', 'Overpass', overpass, helvetica, arial, sans-serif;
+    line-height: 1.6;
+}
+
+.summary-content h2,
+.summary-content h3,
+.summary-content h4 {
+    font-family: 'Red Hat Display', 'Overpass', overpass, helvetica, arial, sans-serif;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #151515;
+}
+
+.summary-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.summary-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.summary-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.summary-content p {
+    margin-bottom: 1rem;
+}
+
+.summary-content ul,
+.summary-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.summary-content li {
+    margin-bottom: 0.5rem;
+}
+
+.summary-content code {
+    background-color: #e7e7e7;
+    padding: 0.125rem 0.25rem;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.875em;
+}
+
+.summary-content pre {
+    background-color: #e7e7e7;
+    padding: 0.75rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+.summary-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.summary-content strong {
+    font-weight: 600;
+}
+
+.summary-content em {
+    font-style: italic;
+}
+
+.summary-content blockquote {
+    border-left: 4px solid #ee0000;
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-bottom: 1rem;
+    color: #6a6e73;
+}
+
+/* Loading Spinner */
+#loadingSpinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#loadingMessage {
+    font-family: 'Red Hat Text', 'Overpass', overpass, helvetica, arial, sans-serif;
+    font-size: 1rem;
+    color: #6a6e73;
+}
+
+/* Form Controls */
+.pf-v5-c-form__group {
+    margin-bottom: 1rem;
+}
+
+.pf-v5-c-form__label-text {
+    font-weight: 500;
+}
+
+.pf-v5-c-form__helper-text {
+    font-size: 0.875rem;
+    color: #6a6e73;
+    margin-top: 0.25rem;
+}
+
+/* Alert */
+.pf-v5-c-alert {
+    border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pf-v5-c-page__main-section {
+        padding: 1rem;
+    }
+
+    .pf-v5-c-card {
+        margin-bottom: 1rem;
+    }
+
+    .pf-v5-c-card__footer {
+        flex-direction: column;
+    }
+
+    .pf-v5-c-button {
+        width: 100%;
+    }
+
+    .brand-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Grid Layout */
+.pf-v5-l-grid.pf-m-gutter {
+    gap: 1rem;
+}
+
+/* Accessibility */
+button:focus,
+input:focus,
+select:focus {
+    outline: 2px solid #06c;
+    outline-offset: 2px;
+}
+
+/* Smooth Transitions */
+.pf-v5-c-button,
+.pf-v5-c-card {
+    transition: all 0.2s ease-in-out;
+}
+
+.pf-v5-c-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
